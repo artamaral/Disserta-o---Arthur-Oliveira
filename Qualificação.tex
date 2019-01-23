@@ -1,0 +1,1207 @@
+%% MODELO DE LATEX PARA TRABALHOS ACADÊMICOS
+%% INSTRUÇÕES GERAIS:
+%%    1. TODO O TEXTO NA FRENTE DO SIMBOLO '%' É COMENTÁRIO, ISTO É, ELE NÃO FAZ DIFERENÇA NO RESULTADO FINAL 
+%%    2. NESTE MODELO, VOCÊS SÓ PRECISAM EDITAR DAS LINHAS 114 A 132 (INFORMAÇÕES DE CAPA) E DAS LINHAS 188 EM DIANTE (CORPO DO TRABALHO). O RESTO SÃO CONFIGURAÇÕES DE FORMATAÇÃO QUE PROVAVELMENTE NÃO SERÁ PRECISO MODIFICAR.
+%%    3. MAIS INSTRUÇÕES DETALHADAS PODERÃO SER ENCONTRADAS NA PÁGINA profhelioh.wordpress.com. DÚVIDAS: heliohenrique@ufpr.br OU heliohenrique3@gmail.com
+
+% INFORMAÇÕES DA FONTE:
+%% abtex2-modelo-relatorio-tecnico.tex, v-1.7.1 laurocesar
+%% Copyright 2012-2013 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://abntex2.googlecode.com/
+%%
+%% This work consists of the files abntex2-modelo-relatorio-tecnico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Relatório Técnico/Acadêmico em conformidade com 
+% ABNT NBR 10719:2011 Informação e documentação - Relatório técnico e/ou
+% científico - Apresentação
+% ------------------------------------------------------------------------ 
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	% openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+    oneside,			% para impressão somente frente. Oposto a twoside (frente e verso)
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	french,				% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+
+\usepackage{cmap}				% Mapear caracteres especiais no PDF
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{url}
+
+% ---
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%  save the current one
+  \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
+  \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
+  \do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
+  \do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+  \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
+  \do\Y\do\Z}
+
+
+
+%%%
+\usepackage{float}
+
+%Incluir Fonte a figuras e tabelas.
+\newcommand{\source}[1]{\caption*{Fonte: {#1}} }
+
+%% Gerenciamento do numeração de equações
+\usepackage{amsmath}
+
+%%%
+% ---
+% Pacotes adicionais, usados no anexo do modelo de folha de identificação
+% ---
+\usepackage{multicol}
+\usepackage{multirow}
+% ---
+	
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\hiddenbibitem
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+%Local das imagens
+\graphicspath{ {Figuras/} }
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Classificação automática de situações em tráfego de veículos}
+\autor{ARTHUR AMARAL DE OLIVEIRA}
+\local{São Bernardo do Campo}
+\data{10 de Setembro, 2018}
+\instituicao{%
+  CENTRO UNIVERSITÁRIO FEI}
+\tipotrabalho{Relatório técnico}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Qualificação de Mestrado apresentada ao Centro Universitário da FEI, como parte dos requisitos necessários para obtenção do título de Mestre em Engenharia Elétrica, orientado pelo Prof. Dr. Paulo Eduardo Santos.}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{relatório técnico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+
+
+% ---
+% Agradecimentos
+% ---
+%\begin{agradecimentos}
+%O agradecimento principal é direcionado a Youssef Cherem, autor do
+%\nameref{formulado-identificacao} (\autopageref{formulado-identificacao}).
+
+%Os agradecimentos especiais são direcionados ao Centro de Pesquisa em
+%Arquitetura da Informação\footnote{\url{http://www.cpai.unb.br/}} da Universidade de
+%Brasília (CPAI), ao grupo de usuários
+%\emph{latex-br}\footnote{\url{http://groups.google.com/group/latex-br}} e aos
+%novos voluntários do grupo
+%\emph{\abnTeX}\footnote{\url{http://groups.google.com/group/abntex2} e
+%\url{http://abntex2.googlecode.com/}}~que contribuíram e que ainda
+%contribuirão para a evolução do abn\TeX.
+
+%\end{agradecimentos}
+% ---
+
+% ---
+% RESUMO
+% ---
+
+% resumo na língua vernácula (obrigatório)
+\begin{resumo} %% AQUI COMEÇA A PÁGINA DE RESUMO
+O raciocínio probabilístico utilizando-se da teoria das probabilidades oferece recursos para codificar as incertezas de um contexto quantitativamente. Este trabalho apresenta um sistema de assistência ao motorista utilizando evidências obtidas a partir da classificação de uma série de quadros de um contexto de tráfego de veículos por uma rede neural convolucional, e em conjunto com uma base de conhecimento que conterá regras do Código Brasileiro de Trânsito, calcula a probabilidade de colisão de veículos.
+
+
+ \vspace{\onelineskip}
+    
+ \noindent
+ \textbf{Palavras-chaves}: raciocínio probabilístico, redes neurais convolucionais.
+\end{resumo} %AQUI TERMINA A PÁGINA DE RESUMO
+% ---
+
+% ---
+% inserir lista de ilustrações
+% ---
+
+%  \listoffigures* %% o * indica que não será incluso no sumário
+%  \cleardoublepage %% Pula página
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+
+%  \listoftables*
+%  \cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+%\begin{siglas}
+%  \item[Fig.] Area of the $i^{th}$ component
+%  \item[456] Isto é um número
+%  \item[123] Isto é outro número
+%  \item[lauro cesar] este é o meu nome
+%\end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+%\begin{simbolos}
+%  \item[$ \Gamma $] Letra grega Gama
+%  \item[$ \Lambda $] Lambda
+%  \item[$ \zeta $] Letra grega minúscula zeta
+%  \item[$ \in $] Pertence
+%\end{simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+
+\tableofcontents*
+
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS  (necessário para incluir número nas páginas)
+% ----------------------------------------------------------
+\textual
+
+
+% ----------------------------------------------------------
+% Introdução
+% ----------------------------------------------------------
+\chapter{Introdução} %% NOVO CAPÍTULO (REPARE QUE ELE AUTOMATICAMENTE JÁ COLOCA O NÚMERO DO CAPÍTULO E JÁ ADICIONA NO SUMÁRIO)
+
+De acordo com o programa Europeu de avaliação carros novos, cuja sigla, Euro NCAP, vem do inglês "European New Car Assessment Programme", \citeonline{EURONCAP2025}, cita em seu estudo que 90\% dos acidentes são causados por erros  humanos. Em geral, são dois problemas que contribuem para que esses erros aconteçam. O primeiro, está ligado às violações das regras de trânsito, como velocidade acima do permitido, direção sobre influência de drogas ou álcool. O segundo, está relacionado à falta de atenção ao trânsito, à fadiga, à distração e à inexperiência do motorista.
+
+Como resposta ao segundo problema, a indústria automotiva vem desenvolvendo diversos sistemas de auxílio à direção, em Inglês "Advanced Driver Assistance Systems"\newline (ADAS), para dar suporte aos motoristas com a finalidade de prevenir e mitigar os erros humanos na condução de veículos. Hoje, os sistemas de aviso de troca de faixa, a assistência para se manter dentro da faixa, os sistemas autônomos de emergência de mudança de direção, o  piloto automático adaptativo, os  sistemas de assistência de velocidade, entre outros, são os mais comuns.
+
+Segundos estudo da Organização Mundial de Saúde, conforme mostrado em \citeonline{8429957}, todo ano ocorrem 1,25 milhões de mortes por acidentes relacionados ao tráfego de veículos, o que significa um gasto anual de US\$ 518 bilhões. Esses dados, além de demandarem de forma crescente medidas de segurança dos motoristas, fizeram com que os fabricantes de automóveis desenvolvessem sistemas avançados de auxílio à direção de veículos. 
+
+Para poder representar o contexto de tráfego de veículos, as técnicas de Aprendizado de Máquina, mais precisamente as Redes Neurais Artificiais (RNA) e, em especial, Redes Neurais Convolucionais (RNC), têm obtido, nos últimos anos,  grandes resultados no campo da visão computacional no que se refere a detectar, classificar e segmentar objetos. Ano após ano, os resultados obtidos no desafio de detecção e classificação de objetos proposto pela \textit{ImageNet}, uma base de dados com mais de 14 milhões de imagens \citeonline{Deng09imagenet}, mostram os avanços conseguidos pelas RNCs.
+
+Apesar do aumento da quantidade de sistemas de aprendizado de máquina, as redes neurais não conseguem interpretar o contexto como um todo, mas sim mostrar todos os objetos que compõem aquele contexto. A interpretação do contexto e de suas incertezas requer regras e relações espaço-temporais. Demanda o uso do raciocínio probabilístico, utilizando-se de regras de lógica escritas; a lógica probabilística é uma técnica apropriada para modelar esse contexto. De acordo com \citeonline{phdthesis_problog}, aplicações que necessitam de um maior formalismo devido ao raciocínio sobre incertezas precisam mais do que lógica. Por essa razão, produziu-se uma vasta quantidade de desenvolvimentos foram feitos na área de Programação em lógica probabilística. $ProbLog$ é uma ferramenta de programação de lógica probabilística, uma extensão do $Prolog$, que além de lógica booleana, pode receber também sentenças em lógica de primeira ordem.
+
+Este trabalho propõe um sistema ADAS que utiliza redes neurais convolucionais, empregando uma sequência de quadros de uma cena de tráfego de veículos como entrada, para obter, na sua saída, uma lista classificada com as probabilidade de os objetos detectados estarem na cena. Esta lista será utilizada como evidências para um sistema de raciocínio probabilístico, o qual será escrito em $ProbLog$. O programa conterá regras de ultrapassagens descritas no Código Brasileiro de Trânsito, que também serão codificadas em $ProbLog$. Utilizando-se tanto as regras de trânsito quanto as evidências providas pela RNC será possível inferir se uma cena apresenta possíveis situações de colisão entre veículos.
+
+%
+
+% ---
+% Capitulo de revisão de literatura
+% ---
+\chapter{Revisão Bibliográfica}
+
+Nas áreas de raciocínio lógico e de aprendizado de máquina, existem diversos trabalhos que mostram técnicas utilizadas para inferência, localização, classificação e reconhecimento de padrões em imagens e vídeos.
+
+\section {Redes Neurais Artificiais}
+
+\citeonline{NIPS2012_4824} propuseram uma RNC que consiste em cinco camadas convolucionais. Dentre elas, existem algumas camadas de agrupamento máximo e três camadas totalmente conectadas. Optou-se pela RNC em vez de redes neurais de alimentação avante ou de alimentação direta com camadas de tamanhos similares porque as RNCs podem utilizar menos conexões e parâmetros, além de serem mais facilmente treinadas com pequena perda de performance. A contribuição dessa proposta se dá no sentido de indicar uma maneira eficiente e otimizada de realizar a convolução das imagens em 2D, utilizando-se de duas unidades de processamento gráfico (UPG). Além disso, a comunicação entre as UPG não é realizada em todas as camadas. Outra contribuição foi o emprego de modelagem das saídas dos neurônios (saturação não linear) de forma não tradicional. Utilizaram-se as funções retificadas lineares (FRL), que têm a propriedade de prevenir que o processo de aprendizado continue quando um exemplo já gerou uma entrada positiva, sem necessidade de normalização. Jarret et. al (2009) também mencionaram alternativas aos modelos tradicionais. 
+
+No trabalho proposto por \citeonline{DBLP:journals/corr/SzegedyLJSRAEVR14} para participar do "ImageNet Large-Scale Visual Recognition Challenge"(ILSVRC) de 2014, melhorou-se, sem que houvesse acréscimo computacional, uma RNC chamada de \textit{Inception}. Ainda que o estado da arte atual, na visão computacional, faça uso de camadas totalmente conectadas, introduziram-se camadas esparsas, inclusive dentro das camadas de convolução, para manter a computação inalterada. O ganho introduzido pelas camadas esparsas acontece se a distribuição de probabilidades do conjunto de dados for representada por rede neural esparsa. Dessa maneira, pode-se construir uma topologia de rede ótima, camada a camada, analisando-se as correlações estatísticas das ativações dos neurônios em camadas anteriores e agregando-se os neurônios com alta correlação na saída. Segundo \citeonline{DBLP:journals/corr/SzegedyLJSRAEVR14} esta afirmação se aproxima do Princípio de Hebbian: “Neurônios que disparam juntos permanecem conectados”. 
+
+No trabalho apresentado por \citeonline{DBLP:journals/corr/SimonyanZ14a} para a competição de ILSVRC de 2015, propôs-se uma RNC com 19 camadas, o que segue o mesmo princípio de aumentar a profundidade da RNC assim como em Szegedy et. al (2015). Entretanto, o resultado foi melhor no que se refere à localização de objetos. Diferentemente de \citeonline{DBLP:journals/corr/SzegedyLJSRAEVR14}, \citeonline{DBLP:journals/corr/SimonyanZ14a} usaram uma estrutura de rede mais simples.
+
+O gargalo computacional atual da detecção de objetos através de RNC, segundo  \citeonline{DBLP:journals/corr/RenHG015} é a região, dentro da imagem, onde a RNC irá analisar a detecção de objetos. Por esta razão, \citeonline{DBLP:journals/corr/RenHG015} propuseram uma RNC chamada de "Faster R-CNN". Para a geração de regiões, treina-se uma RNC totalmente conectada para detectar os limites dos objetos e uma pontuação do objeto para cada posição. A saída da camada convolucional gera um mapa de características usadas tanto para gerar as regiões propostas de localização dos objetos, quanto como entrada para uma outra RNC para a atividade de detecção. Por essa razão, as propostas de regiões têm custo computacional quase  zero. Obtém-se esse custo baixo de computação pelo treinamento das redes. Primeiro, treina-se a RNC com a \textit{ImageNet} para a tarefa de gerar as propostas de regiões e, depois, utilizando-se das propostas geradas pelo treinamento, treina-se novamente a RNC. Após essa etapa, as camadas de convolução ainda não estão conectadas; o último passo consiste em fazer a conexão entre as redes. Essa proposta de detecção de objetos consegue ser eficiente com uma taxa de 5-17 quadros por segundo.
+
+\citeonline{taylor-eccv-10} desenvolveram um método capaz de aprender representações de uma sequência de pares de imagens sucessivas usando fluxo ótico como entrada para a RNC, o que possibilita extrair características de movimento, segmentação e detecção de bordas. Um diferencial em relação a outros métodos propostos durante seu estudo foi a introdução de probabilidades na camada que realiza o agrupamento pelo valor máximo. 
+
+Combinando RNC com o algoritmo de análise independente do subespaço (ISA) \citeonline{Le:2011:LHI:2191740.2192108} mostraram que é possível identificar variações temporais em vídeos. Nas primeiras camadas da RNC, o modelo aprende características que detectam movimentos de borda. Por meio da variação da velocidade dos objetos na imagem com a aplicação do ISA, obtêm-se neurônios altamente sensíveis à variação da velocidade. Essa propriedade faz com que a referida abordagem seja capaz de reconhecer movimentos.
+
+Como descrito anteriormente, o uso da  RNC apresentou grandes resultados na classificação de imagens. Isso motivou \citeonline{KarpathyCVPR14} a avaliar o emprego de RNCs para classificar vídeos e compará-las com as melhores práticas de classificação de algoritmos baseados em características locais. Os resultados mostraram melhoria na performance do uso de RNCs. \citeonline{KarpathyCVPR14} apresentaram também um método que aplica uma arquitetura com duas RNCs. Elas processam separadamente a entrada em duas diferentes resoluções espaciais, as quais são fundidas na primeira camada totalmente conectada. Para inserir a informação de tempo, agregaram-se informações de 10 quadros submetidos a todos os níveis convolucionais. Reduziram-se pela metade os quadros da entrada em sua resolução espacial. Para a primeira RNC, essa foi a imagem de entrada; já para a segunda RNC, valendo-se da premissa de que o objeto de interesse ocupa a região central da imagem, ela somente recebeu a porção central do objeto. A redução de resolução não prejudicou o resultado final do experimento e, ainda, houve redução de 50\% no tempo de treinamento.
+
+\citeonline{NIPS2014_5353} propõem um novo método para reconhecimento de ações em vídeos, que consiste em analisar separadamente as partes espacial e temporal de uma sequência de quadros. A parte espacial traz informações sobre a cena e seus objetos a cada quadro; a sequência de quadros traz informações sobre o movimento da cena, da câmera e do movimento dos objetos presentes na cena. As análises espacial e temporal são implementadas separadamente, usando-se RNCs e classificação normalizada entre 0 e 1. O processo de análise da parte espacial não contempla nenhuma novidade, entretanto, na análise temporal, a entrada para a RNC é a variação do fluxo ótico ou a variação de trajetória em uma sequência consecutiva de quadros. Dessa maneira, os dados de entrada já representam um movimento, não sendo necessário que a RNC avalie se ele existe ou não. Para agregar os resultados das duas RNCs, aplicaram-se dois métodos: a média e a máquina de vetores de suporte (SVM) sobre o resultado normalizado da segunda camada de classificação.
+
+Além das RNC’s serem usadas em uma ampla lista de tarefas, utilizando-se imagens como entrada,  \citeonline{DBLP:journals/corr/RavanbakhshMRMD15} empregaram vídeos, em vez de apenas imagens, com o objetivo de reconhecer ações. Utilizando a última camada de RNC antes da camada de classificação, \citeonline{DBLP:journals/corr/RavanbakhshMRMD15} introduziram uma estrutura hierárquica capaz de capturar a variação temporal em vídeos. O referido modelo foi capaz de capturar pequenas ações dentro de ações complexas. Essas pequenas ações representaram um grau diferente de granularidade dentro da ação completa. Propôs-se a estrutura capturando-se as características espaciais. Para isso, utilizou-se a arquitetura AlexNet \citeonline{NIPS2012_4824}, treinadas com a base de dados ImageNet. As características temporais, diferentemente dos trabalhos anteriores que propunham fluxo óptico, foram adquiridas a partir de pequenos intervalos do vídeo. Nesses intervalos, computaram-se informações grosseiras das características dos quadros iniciais e finais, então, dividiu-se recursivamente o intervalo e computaram-se novamente as características até que não fosse mais possível dividir o intervalo do vídeo. Tais informações formaram uma estrutura de árvore binária, na qual os níveis que se encontram mais perto da raiz representam as informações mais grosseiras e as que se encontram mais perto das folhas apresentam as características mais finas do movimento são. Para a análise da estrutura de árvore binária, empregaram-se abordagens clássicas da visão computacional. O método de classificação proposto foi SVM não linear.
+
+\citeonline{DBLP:journals/corr/abs-1708-02349} apresentaram uma nova abordagem para o reconhecimento de ações em vídeos. Os autores definem ações por atividades de curto espaço de tempo, enquanto uma atividade é um conjunto de ações e esse conjunto de ações é o foco do seu estudo. Para uma precisa localização de atividades humanas, propôs-se uma Rede de Contexto Temporal (TCN). Essa rede é similar a uma Rede Neural Convolucional, baseada em Regiões Rápidas (Fast-R CNN), porém apresenta um novo método para classificar múltiplas escalas temporais. Amostraram-se, no mesmo momento, características defasadas no tempo e no tamanho da amostra. Tais amostragens são a entrada para a RNC que classifica as amostras.
+
+Com o objetivo de reconhecimento de ações em vídeos, \citeonline{DBLP:journals/corr/abs-1708-02349} propuseram uma abordagem, “trajectory-pooled deep-convolutional descriptor” (TDD), que utiliza, além de características aprendidas através de RNC, uma técnica construída manualmente, chamada de “Improved Trajectories” (IT). A IT faz uso de fluxo ótico para o reconhecimento de trajetórias, como proposto por (Wang et al. apud Wang and Schmid). Apesar de TDD ser independente de IT, ela foi escolhida por apresentar um bom desempenho na detecção de trajetórias. A RNC utilizada para a TDD foi proposta por \citeonline{DBLP:journals/corr/SimonyanZ14a}, a qual é empregada para aprender um mapa de características espaciais e temporais discriminativas que, em conjunto com a IT, retornaram os descritores da TDD.
+
+Para melhorar a demanda computacional que o fluxo ótico exige, \citeonline{DBLP:journals/corr/ZhangWWQW16} propõem utilizar vetores de movimento. Com isso, demonstram que sua proposta pode realizar reconhecimento de ações em tempo real, pois as ações podem ser obtidas diretamente durante o processo de decodificação do vídeo. Além da melhoria computacional, para melhorar a performance do reconhecimento das ações, treinam-se as RNCs com os vetores de movimentos e o fluxo ótico.
+
+Utilizando-se de redes de memória de longo e curto prazo (LSTM), alimentadas pela última camada totalmente conectada por um sistema de duas RNC proposto por \citeonline{NIPS2014_5353}, \citeonline{LI201841} propuseram uma abordagem capaz de reconhecer a ordenação espacial em uma sequência de quadros  e, com isso, ser capaz de reconhecer movimento, além de determinar o local relevante dentro do domínio do espaço-tempo. Em conjunto com a LSTM, utilizou-se um mecanismo de atenção, representado por uma rede neural.
+
+As RNAs, mais especificamente as RNCs, terão papel fundamental no proposta deste trabalho, uma vez que será através dela que será obtido as informações contidas em uma cena de tráfego de veículos. Essas informações, são a detecção e classificação dos objetos que serão usados como evidência durante a inferência probabilística.
+
+\section {Lógica Probabilística}
+
+Com o objetivo de interpretar faixas de trânsito, \citeonline{10.1007/978-3-642-23232-9_20} desenvolveram um modelo de lógica probabilística que analisa os quadros de um vídeo captado do ponto de vista do veículo por meio de um sistema de visão de baixo nível e baseando-se na transformada de Hough. Para realizar a inferência, uma Rede Lógica de Markov (MLN) disponibiliza a interpretação gerada pela saída da classificação, empregando uma base de conhecimento em lógica de primeira ordem, que contém as regras de trânsito e a representação do domínio. 
+
+O reconhecimento de eventos a partir de vídeos é importante para detecção de anormalidades no seu contexto. Técnicas que utilizam programação em lógica indutiva (ILP) conseguem aprender modelos, a partir de eventos devido à sua ralação de espaço-tempo. No trabalho proposto por \citeonline{Dubba2015LearningRE}, é mostrado que para base de dados pequenas, ILP consegue ter sucesso na tarefa de aprender o modelo dos eventos. Para base de dados maiores é proposto uma abordagem diferente, é apresentada um método de aprendizado relacional supervisionado dos evento para gerar o modelo.
+
+\citeonline{Cohn2006} propuseram um sistema de visão cognitiva que combina visão computacional e representação simbólica qualitativa. A representação simbólica dos dados foi feita utilizando-se ILP e permite que a generalização de conceitos como equivalência e ordenamento, que não é possível utilizando-se técnicas estatísticas padrão.  A aprendizagem do modelo, neste trabalho, tem como objetivo capturar o comportamento de eventos contidos em uma sequência de quadros, através da sua relação espacial qualitativa entre os objeto que fazem parte da cena.
+
+Neste trabalho, a representação do domínio de tráfego de veículos e suas regras, necessitam de um método que consiga representar, através de um modelo probabilístico, as incertezas e correlações existentes no domínio. Neste sentido, a lógica probabilística utilizando-se da programação em lógica, é apropriada para modelar e interpretar as incertezas presentes no domínio de tráfego de veículos e inferir prováveis situações de risco.
+
+\section {Sistemas de Assistência ao Motorista}
+
+Classificam-se os sistemas de segurança veicular, segundo  \citeonline{8429957}, em dois tipos: passivos e ativos. Os sistemas passivos de segurança têm como objetivo proteger de ferimentos os ocupantes dos veículos depois de uma colisão. Alguns exemplos são os cintos de segurança, os \textit{air bags}, o painel de instrumentos acolchoados, entre outros. Os sistemas de segurança ativos, por outro lado, têm como principal objetivo prevenir as colisões. Denominam-se esses sistemas de Sistemas Avançados de Assistência ao Motorista (ADAS).
+
+A predição automática de risco de trânsito é um dos principais interesses dos ADAS. Em \citeonline{Inoue} propõem-se um novo modelo de predição de risco utilizando raciocínio com inferência pela melhor explicação em lógica de primeira ordem. Para melhorar a inferência, empregou-se um algoritmo de aprendizado de máquina visto em \citeonline{Wang:2012:ESC:3042573.3042591} cujo objetivo é definir um peso para cada hipótese e, com isso, melhorar a robustez da predição do modelo. Fazendo-se uso de potenciais riscos já estabelecidos pelo centro de educação da Toyota e de outros materiais coletados de lições de trânsito, propuseram-se 93 riscos para a base de conhecimento.
+
+Uma revisão feita sobre o estágio atual do ADAS, \citeonline{6936444} avaliaram que, atualmente, os sensores presentes nos carros são capazes de receber informações detalhadas sobre o meio onde está o veículo. Entretanto, a avaliação de percepção e os alertas de situação realizados pelos controladores dos carros ainda estão iniciando sua aplicação. Por essa razão, afirmam que é necessário haver progresso nas áreas de classificação de cenas como, por exemplo: reconhecimento de objetos em condições dinâmicas, compreensão contextual de cenas, inferência sobre a relação entre objetos dinâmicos e a infraestrutura de trânsito. Com o desenvolvimento da área de classificação de cenas, em conjunto com o progresso do \textit{hardware} e do \textit{software}, espera-se que se estabeleça no mercado automotivo um alto nível de Inteligência Artificial. A predição probabilística de comportamentos futuros, tanto dos veículos como de todos os objetos que fazem parte da cena, deve ser levada em conta por meio de inferência da intenção dos objetos nela presentes e também do modelamento do comportamento desses objetos.
+
+Sistemas de alerta de colisão são uma das funções do ADAS e um ponto crítico para segurança veicular, \citeonline{7799842} propuseram um sistema de alerta de colisão que se utiliza de uma câmera monocular para capturar uma sequência de quadros da cena de tráfego em estradas. Uma RNC é alimentada com os quadros capturados pela câmera e utiliza sua saída como um classificador e detector de veículos da cena capturada. Propõe-se um sistema adaptativo de determinação da região de interesse dos quadros da cena em questão, utilizando-se da detecção das faixas de rolamento através da transformada de \textit{Hugh}, a qual usa a convergência das linhas detectadas como região de interesse válida. Para o cálculo do tempo de colisão, utiliza-se apenas o veículo, identificado pela RNC, e que está dentro da região de interesse do quadro da cena. Calcula-se a distância através da relação geométrica da largura do veículo detectado, comparada com a largura entre as faixas de rolagem identificadas.
+
+Os sistemas ADAS baseados em câmera, como explica \citeonline{8429957}, podem ser utilizados para diversos tipos de detecção como, por exemplo: automóveis, pedestres, faixas de rolamento e sinais de trânsito. A câmera, como um sensor de aquisição de informações, consegue também capturar informações como: cor, contraste, textura, etc. Com o uso de câmeras para os sistemas ADAS, foi possível implementar as mais avançadas técnicas de aprendizado de máquina e de computação visual. Atualmente, os tipos de detecção já mencionadas acima utilizam-se de RNC como ferramenta.
+
+Como os fabricantes automotivos tem cada vez mais incluído sistemas de auxílio ao motorista, novos sistemas ativos que mitiguem os riscos devem ser desenvolvidos e melhorados. Levando-se em conta que cada vez mais os veículos vem equipados com câmeras, e os avanços em \textit{hardware} e \textit{software}, a proposta deste trabalho é um sistema ativo de auxílio ao motorista que o alerte em caso de um possível risco de colisão, e está em linha com o que se vem pesquisando em ADAS.
+
+Neste capítulo foram relacionadas pesquisas que serão a base técnica deste trabalho e por representarem o estado da arte das suas respectivas áreas. No próximo capítulo serão apresentadas os fundamentos teóricos referentes à RNA e lógica probabilística.
+
+%%%%%%%%
+
+
+
+%%%%%%%
+
+
+
+
+\chapter{Revisão teórica}
+
+Neste capítulo, discorre-se sobre as teorias básicas que serão utilizadas na proposta do trabalho. Em visão computacional, descrevem-se técnicas de detecção e classificação de objetos utilizando-se as Redes Neurais Artificiais. Em Raciocínio Probabilístico, apresenta-se a programação em lógica com o objetivo de modelar as regras do contexto proposto para a inferência probabilística.
+
+\section {Redes Neurais Artificiais}
+
+%As Redes Neurais Artificias (RNA) são pouco parecidas com as Redes Neurais Biológicas, apenas foram inspiradas por algumas características das funções cerebrais e que ajudaram no desenvolvimento das RNA's. Em um cérebro existe por volta de $10^{11}$ elementos conectados com aproximadamente $10^4$ conexões e que conhecemos por neurônios, que por sua vez são compostos por basicamente três partes conforme figura \ref{fig:figuraneuronio} : Dendritos, Axônio e Sinapse.
+
+%% Deletar os dois primeiros paragrafos da seção 3.1 %%
+
+
+%\begin{figure}[h]
+%    \centering
+%    \caption{Esquema de um Neurônio biológico}
+%    \includegraphics[width=\textwidth]{Neuronio}
+%    Fonte: \citeonline{Neural_Network_Design}\hfill
+%    \label{fig:figuraneuronio}
+%\end{figure}
+
+%As RNA's não tem a complexidade de células cerebrais, porém existem dois aspectos em que são semelhantes. O primeiro está relacionado aos elementos da rede que são meros dispositivos computacionais e são altamente interconectados, embora os neurônios artificias sejam muito mais simples. O segundo aspecto diz respeito as conexões entre os neurônios que determinam a função da rede. Embora neurônios biológicos sejam muito lentos em comparação com circuitos elétricos ($10^-3$ contra $10^-10$ s), nosso cérebro é capaz de realizar tarefas muito mais rápido que um computador devido à impressionante de estrutura de processamento paralelo existente nas redes neurais biológicas. 
+%Nos dias atuais a Inteligência Artificial (IA) tem conseguindo resolver problemas que para os humanos são muito difíceis, problemas esses que são possíveis de serem declarados formalmente através de regras matemáticas, por outro lado as tarefas que se mostram desafiadoras para a IA são relativamente simples para os humanos mas são de difícil formalização, como o reconhecimento de palavras em um som ou particularidades em uma imagem. 
+%As soluções que usam RNA permitem que computadores aprendam a partir de experiências e entendimento do mundo em termos de conceito de hierarquia, onde cada conceito é definido através de das suas relações com conceitos mais simples. Ganhando conhecimento através de experiências, RNA's não necessitam de um humano para formalmente especificar todo o conhecimento que %um computador necessita, as hierarquias permitem que os computadores aprendam conceitos complicados através de outros mais simples.
+
+%%%%%%%
+
+Neste trabalho as RNA serão utilizadas para detectar e segmentar objetos, que pertencentes a uma sequências de quadros como entrada. 
+
+
+A seguir, apresentam-se modelos matemáticos simplificados de neurônios artificiais, como formalizado por \citeonline{Neural_Network_Design} e como eles podem ser interconectados, formando uma arquitetura de rede.
+
+A notação matemática a ser aplicada será a seguinte:
+
+\begin{itemize}
+ 
+\item Escalar  — letras minúsculas em \textit{itálico}: \textit{a,b,c}
+\item Vetores  — letras minúsculas em \textbf{negrito}: \textbf{a,b,c}
+\item Matrizes — letras maiúsculas em \textbf{NEGRITO}: \textbf{A,B,C} 
+
+\end{itemize}
+
+\subsection {Neurônios de entrada única}
+
+Um neurônio de entrada única pode ser visto na figura \ref{fig:Neurônio_geral1}, onde uma entrada escalar \textit{p} é multiplicada por um fator de ponderação \textit{w} formando assim \textit{wf} e enviado para a função de integração. A outra entrada, de valor 1, é multiplicada por fator de erro \textit{b} e também enviado a função de integração. O resultado da função de integração é denominado entrada da rede e vai para uma função de transferência \textit{f} que produz um escalar \textit{a} como saída do neurônio, representado pela equação \ref{eq:neuonio_simples}
+
+\begin{figure}[H]
+    \centering
+    \caption{Neurônio de entrada única}
+    \includegraphics[scale=1]{Neuronio_geral1}\\
+    Fonte: Autor\hfill
+    \label{fig:Neurônio_geral1}
+\end{figure}
+
+  \begin{equation}
+    a = {f(wp+b)}
+    \label{eq:neuonio_simples}
+  \end{equation}
+
+
+ Os escalares \textit{w} e \textit{b} são parâmetros ajustáveis pela função de transferência escolhida pelo responsável pela rede neural. Com isso, são ajustados por alguma regra de aprendizagem para que as relações de entrada e saída do neurônio atinjam alguma meta específica. Escolhem-se as funções de transferência para satisfazer alguma especificação do problema que o neurônio está tentando resolver. A importância das funções de ativação é que elas trazem um componente não linear para as RNA, o que leva a pensar na possibilidade de que aprendam mais do que relações lineares das variáveis, sejam elas dependentes ou independentes. As funções de ativação são responsáveis por introduzir uma componente de não linearidade ao sistema dentro da RNA, o que as diferencia de um modelo de regressão linear. Apresentam-se, abaixo, as três funções de ativação mais usadas.
+
+\begin{enumerate}
+  \item Função Limiar\\
+  A função Limiar, figura: \ref{fig:Hard_limit1}, define a saída do neurônio em 0 quando o resultado da função for menor que 0, ou 1 se seu argumento for maior ou igual a 0.
+  
+  \begin{figure}[H]
+    \centering
+    \caption{Função Limiar}
+    \includegraphics[scale=0.75]{Hard_limit1}\\
+    Fonte: Autor\hfill
+    \label{fig:Hard_limit1}
+  \end{figure}
+  
+  
+  \item Função Linear\\
+  A saída da função linear é igual sua entrada, conforme mostra a figura \ref{fig:Linear}.
+  
+  \begin{figure}[H]
+    \centering
+    \caption{Função de transferência Linear}
+    \includegraphics[scale=0.75]{Linear1}\\
+    Fonte: Autor\hfill
+    \label{fig:Linear}
+  \end{figure}
+  
+  \item Função \textit{Log-sigmoide}\\
+  A entrada para a função log-sigmoide, figura \ref{fig:Sigmoid}, varia entre $\pm$  $\infty$ e limita a saída entre 0 e 1, de acordo com a equação \ref{eq:sigmoid}. Este tipo de função é muito usada em redes com muitas camadas e que são treinadas usando algoritmos de retropropagação de erro, em especial porque esta função pode ser derivada.
+  
+  
+  \begin{equation}
+    a = \frac{1}{1+\textit{$e^\textit{-n}$}}
+    \label{eq:sigmoid}
+  \end{equation}
+  
+  \begin{figure}[H]
+    \centering
+    \caption{Função de transferência Sigmoide}
+    \includegraphics[scale=0.75]{Sigmoid}\\
+    Fonte: Autor\hfill
+    \label{fig:Sigmoid}
+\end{figure}
+  
+\end{enumerate}
+
+
+\subsection {Neurônios de múltiplas entradas}
+
+Normalmente um neurônio tem mais de uma entrada, portanto um neurônio com \texttt{R} entradas, como na figura \ref{fig:Neuronio_multipla_entrada}, tem suas entradas individuais \textit{\(p_1, p_2,...,p_R \)}  ponderadas pelos respectivos elementos \textit{\(w_1, w_2,...,w_R \)} da matriz do fator de ponderação \textbf{W}. O Soma-se o fator de erro com as entradas já ponderadas para formar a entrada da rede \textit{n}, como visto na equação \ref{eq:m_entradas}: 
+
+\begin{figure}[H]
+    \centering
+    \caption{Neurônio de múltiplas entradas}
+    \includegraphics[scale=1]{Neuronio_multipla_entrada1}\\
+    Fonte: Autor \hfill
+    \label{fig:Neuronio_multipla_entrada}
+\end{figure}
+
+  \begin{equation}
+    \textit{n} = \textit{\[w_{1,1}p_1 + w_{1,2}p_2 +...+ w_{1,R}p_R + b. \]}
+    \label{eq:m_entradas}
+  \end{equation}
+  
+  A equação \ref{eq:m_entradas} pode ser descrita na forma matricial, de acordo com a equação \ref{eq:multiplas_entradas1}:
+  
+ \begin{equation}
+    \textit{n} = \textbf{Wp} + \textit{b}.
+    \label{eq:multiplas_entradas1}
+  \end{equation}
+  
+  Dessa maneira um neurônio pode ser definido de acordo com a equação \ref{eq:multiplas_entradas2}:
+  
+ \begin{equation}
+    \textit{a} = \textit{f}(\textbf{Wp} + \textit{b}).
+    \label{eq:multiplas_entradas2}
+  \end{equation} 
+  
+\subsection {Neurônios de uma camada} 
+
+Uma rede com apenas uma camada de neurônios $S$, como mostrado na figura \ref{fig:Neuronio_uma_camada}, recebe cada entrada \textbf{p} que está conectada com cada neurônio através da matriz do fator de ponderação e recebe um fator de erro na função de integração, que passa seu resultado para a função de transferência para gerar a saída \textit{a}.
+
+
+\begin{figure}[H]
+    \centering
+    \caption{Rede com uma camada de neurônios}
+    \includegraphics[scale=1]{Camada_neuronios1}\\
+    Fonte: Autor\hfill
+    \label{fig:Neuronio_uma_camada}
+\end{figure}
+
+A matriz do fator de ponderação \textbf{W} é representada pela equação \ref{eq:multiplas_entradas}:
+
+ \begin{equation}
+    \textit{a} = \textit{f}(\textbf{Wp} + \textit{b}).
+    \label{eq:multiplas_entradas}
+  \end{equation} 
+  
+
+Cada linha da matriz \textbf{W}, de acordo com a equação \ref{eq:matriz_pond} indica o neurônio destino ao qual os fatores de ponderação estão associados, enquanto as colunas indicam a fonte da entrada de cada fator de ponderação.
+
+\begin{equation}
+\centering
+\textbf{W} ={\begin{bmatrix}
+    w_{1,1} & w_{1,2} & \cdots & w_{1,R}\\
+    w_{2,1} & w_{2,2} & \cdots & w_{2,R}\\
+    \vdots & \vdots & \ddots & \vdots \\
+    w_{S,1} & w_{S,2} & \cdots & w_{S,R}
+\end{bmatrix}}
+\label{eq:matriz_pond}
+\end{equation} 
+
+\subsection {Neurônios de múltiplas camadas} 
+
+Em uma rede com vários neurônios, como visto na figura \ref{fig:Neuronio_multipla_camada}, cada camada tem sua própria matriz de ponderação \textbf{W}, seus próprios vetores de erro \textbf{b}, de entrada \textit{n} e uma saída \textbf{a}. Para definir todos esses elementos de cada camada, inclui-se um índice sobrescrito em cada termo. A camada de saída é a própria saída da rede. Todas as outras camadas são denominadas de camadas ocultas. 
+Redes neurais multicamadas tem mais capacidade de resolver problemas que as redes simples. Por exemplo, uma rede de duas camadas tendo uma \textit{log-sigmoide} na primeira camada e uma linear na segunda pode ser treinada para aproximar funções, porém as de camada única não. 
+
+\begin{figure}[H]
+    \centering
+    \caption{Rede com múltiplas camadas de neurônios}
+    \includegraphics[scale=0.65]{neuronio_multi_camada1}\\
+    Fonte: Autor\hfill
+    \label{fig:Neuronio_multipla_camada}
+\end{figure}
+
+\subsection {Redes recorrentes}
+
+As redes neurais recorrentes são redes com realimentação de informações da saída diretamente para a matriz \textbf{W}, ou seja, suas saídas estão conectadas às entradas. Pode-se visualizar na figura \ref{fig:rederecorrente} um exemplo de rede recorrente discreta em relação ao tempo. Redes recorrentes são poderosas se comparadas com as não recorrentes, especialmente pelo motivo de as saídas futuras serem computadas, levando-se em conta as saídas de períodos anteriores.
+
+\begin{figure}[H]
+    \centering
+    \caption{Rede recorrente}
+    \includegraphics[scale=0.75]{Rede_recorrente1}\\
+    Fonte: Autor\hfill
+    \label{fig:rederecorrente}
+\end{figure}
+
+
+\subsection{Redes neurais de alimentação direta}
+
+As técnicas modernas utilizadas em aprendizado de máquina são uma estrutura poderosa para o aprendizado supervisionado de acordo com \citeonline{Goodfellow-et-al-2016}. Uma RNA pode aumentar sua complexidade adicionando-se mais camadas ou mesmo mais entradas em cada camada. 
+
+Nesta seção, mostra-se o modelo básico de uma RNA, segundo \citeonline{Neural_Network_Design}. Este modelo básico é chamado de Perceptron. 
+
+%e as RNC's que são atualmente utilizadas para atividades de reconhecimento e detecção de objetos em imagens.%
+
+Perceptrons ou Redes Neurais de alimentação direta, como mostrado na figura \ref{fig:perceptron},  tem sua saída definida pela equação \ref{eq:perceptron}:
+
+ \begin{equation}
+    \textbf{a  = Limiar(Wp+b)}.
+    \label{eq:perceptron}
+  \end{equation} 
+  
+\begin{figure}[H]
+    \centering
+    \caption{Perceptron}
+    \includegraphics[scale=1]{perceptron1}\\
+    Fonte: Autor\hfill
+    \label{fig:perceptron}
+\end{figure}
+
+Tendo-se em vista a seguinte matriz de ponderação da equação \ref{eq:matrix} :
+
+\begin{equation}
+\centering
+\textbf{W} ={\begin{bmatrix}
+    w_{1,1} & w_{1,2} & \cdots & w_{1,R}\\
+    w_{2,1} & w_{2,2} & \cdots & w_{2,R}\\
+    \vdots & \vdots & \ddots & \vdots \\
+    w_{S,1} & w_{S,2} & \cdots & w_{S,R}
+\end{bmatrix}}
+\label{eq:matrix}
+\end{equation} 
+
+Consideraremos um vetor composto o enésimo elemento da coluna de \textbf{W}, conforme equação \ref{eq:vetor}:
+
+\begin{equation}
+\centering
+\textbf{$_i$W} ={\begin{bmatrix}
+    w_{i,1}\\
+    w_{i,2}\\
+    \vdots \\
+    w_{i,R}
+\end{bmatrix}}
+\label{eq:vetor}
+\end{equation}
+
+Então, pode-se particionar o vetor de ponderação conforme a equação \ref{eq:vetor_ponderacao}:
+
+\begin{equation}
+\centering
+\textbf{$_i$W} ={\begin{bmatrix}
+    \textbf{$_1$W}^T\\
+    \textbf{$_2$W}^T\\
+    \vdots \\
+    \textbf{$_S$W}^T
+\end{bmatrix}}
+\label{eq:vetor_ponderacao}
+\end{equation}
+
+A partir dessas equações, pode-se escrever o enésimo elemento do vetor de saída da rede, como mostrado na equação \ref{eq:vetor-saida} :
+
+\begin{equation}
+\centering
+    a_1=\textit{Limiar}(\textbf{$_i$W}^T\textbf{p}+\textit{$b_i$}).
+    \label{eq:vetor-saida}
+\end{equation}
+
+As redes neurais de alimentação direta têm sua saída computada diretamente em uma única passada pela rede; não existe retroalimentação. Esse tipo de estrutura é comumente utilizada para reconhecimento de padrões, para aproximação de funções que serão usadas em filtros adaptativos e também em controles automáticos.
+
+Na próxima seção será apresentado um caso especial de redes neurais de alimentação direta, chamadas de redes neurais convolucionais. As redes neurais convolucionais atualmente, como mostrado no capítulo 2, tem se mostrado eficiente para o processamento de imagens quando é necessário detectar e classificar objetos em imagens.
+
+
+\subsection{Redes Neurais Convolucionais}
+As RNCs são um caso especial das redes neurais de alimentação direta. De acordo com  \citeonline{Goodfellow-et-al-2016}, são simplesmente redes neurais que utilizam convolução ao invés de multiplicação de matrizes em, pelo menos, uma de suas camadas. São utilizadas, principalmente, para processamento de dados com topologia do tipo grade, como imagens, por exemplo, que têm duas dimensões. As redes convolucionais obtiveram bastante êxito em aplicações práticas, principalmente com imagens. O nome convolução refere-se à operação matemática linear entre duas funções com valores reais e definidos na equação \ref{eq:convolucao}:
+
+\begin{equation}
+\centering
+    \textit{s(t)=(x \textasteriskcentered w )(t)}.
+    \label{eq:convolucao}
+\end{equation}
+
+O argumento \textit{w} da função \ref{eq:convolucao} deve ser uma função válida de probabilidade densa, senão a saída não será uma média ponderada. Deve também ser 0 para todos argumentos negativos. A função \textit{x} da equação \ref{eq:convolucao} é a entrada e \textit{w}, o kernel. Sua saída é denominada de mapa de característica. No caso de imagens, o tempo é discreto, portanto pode-se assumir que \textit{t} é um valor inteiro e que tanto \textit{x} quanto \textit{w} estão restritos ao inteiro \textit{t} Com isso é possível definir uma convolução discreta na equação \ref{eq:convolucao1}
+
+\begin{equation}
+\centering
+    \textit{s(t)=(x \textasteriskcentered w )(t)} = \sum_{a=- \infty}^{\infty} \textit{(a)w(t-a)} .
+    \label{eq:convolucao1}
+\end{equation}
+
+Para imagens, utilizou-se convolução em mais de um eixo por vez. Neste caso empregou-se um kernel de duas dimensões, como mostrado na equação \ref{eq:convolucao2}:
+
+
+\begin{equation}
+\centering
+    \textit{s(i,j)=(K\textasteriskcenteredI I)((i,j))} = \sum_{m} \sum_{n} \textit{I(m,n)K(i-m, j-n)} .
+    \label{eq:convolucao2}
+\end{equation}
+
+Uma convolução é comutativa, por isso pode ser definida também como visto na figura \ref{eq:convolucao3}:
+
+\begin{equation}
+\centering
+    \textit{s(i,j)=(I\textasteriskcenteredI K)((i,j))} = \sum_{m} \sum_{n} \textit{I(i-m, j-n)K(m,n)} .
+    \label{eq:convolucao3}
+\end{equation}
+
+
+No exemplo da figura \ref{fig:convolução}, há uma imagem binária de 5x5 utilizada como entrada I para a convolução, e um kernel K 3x3. O resultado no mapa de característica de convolução o valor 2, como pode ser visto na soma dos produtos I por K.
+
+\begin{figure}[H]
+    \centering
+    \caption{Exemplo convolução}
+    \includegraphics[scale=0.65]{convolucao1}\\
+    Fonte: Autor\hfill
+    \label{fig:convolução}
+\end{figure}
+
+A convolução traz três importantes ideias que ajudam a melhorar o sistema de aprendizado de máquina:
+
+\begin{itemize}
+    \item Interações esparsas: em RNAs tradicionais, multiplica-se uma matriz por outra matriz, ou seja, toda saída interage com toda entrada. Nas RNCs, utiliza-se um kernel muito menor do que o tamanho da entrada, o que significa uma grande redução de memória e que a computação da saída requer menos operações. No exemplo da figura \ref{fig:esparso}, uma entrada \textit{$x_3$} e as saídas \textit{s}, que estão em destaque, mostram que utilizando um kernel de tamanho 3, apenas três saídas são impactadas por \textit{x} (superior). Por outro lado, quando a saída \textit{s} é resultado de uma multiplicação de matrizes, a conectividade não é mais esparsa e portanto todas as saídas são afetadas por uma única entrada \textit{$x_3$} (inferior).
+    
+\begin{figure}[H]
+    \centering
+    \caption{Conectividade esparsa}
+    \includegraphics[scale=1]{esparso1}\\
+    Fonte: Autor\hfill
+    \label{fig:esparso}
+\end{figure}
+    
+        \item Compartilhamento de parâmetros: utiliza cada membro do kernel em todas as posições dos dados de entrada e faz com que, em vez de aprender parâmetros separados para cada posição, apenas aprenda um conjunto. Isso não afeta o tempo de processamento da propagação direta, porém reduz muito a necessidade de memória para um modelo que utiliza, por exemplo, valores de kernel k de 3x3, 5x5 e 7x7, se comparado com as dimensões de uma imagem inteira. A figura \ref{fig:compartilhamento} mostra as conexões com setas em negrito. Na parte superior, indica o uso de kernel de três elementos em um modelo convolucional. Na parte de baixo, indica o uso de uma matriz ponderada totalmente conectada. Nas RNAs que utilizam esse método, cada entrada tem sua própria matriz de ponderação, ou seja, neste caso não há compartilhamento de parâmetros como o kernel compartilha em redes convolucionais.
+ 
+\begin{figure}[H]
+    \centering
+    \caption{Compartilhamento de parâmetros}
+    \includegraphics[scale=1]{compartilhamento1}\\
+    Fonte: Autor\hfill
+    \label{fig:compartilhamento}
+\end{figure}       
+        
+        
+    \item Representações Equivariantes: a forma particular com que as convoluções compartilham parâmetros faz com que a camada tenha uma propriedade equivariante em relação à translação da entrada. Independentemente de onde o objeto esteja em uma imagem, a capacidade de identificar suas bordas será a mesma.
+    
+\end{itemize}
+
+Uma típica camada de uma RNC tem três estágios. No primeiro estágio, as camadas realizam várias convoluções em paralelo para produzir um conjunto de ativações lineares. No segundo estágio, cada ativação linear é processada por uma função de ativação não linear, para RNCs a mais utilizada é a função de ativação linear retificada (ReLu). A figura \ref{fig:relu} mostra o gráfico da função $f(x)=max(0,x)$, que tem saída 0 sempre que a entrada for menor que zero, e tem saída igual à entrada para todos os valores maiores que 0.  
+
+\begin{figure}[H]
+    \centering
+    \caption{Função ReLu}
+    \includegraphics[scale=0.75]{ReLu}\\
+    Fonte: Autor\hfill
+    \label{fig:relu}
+\end{figure} 
+
+No terceiro estágio, tem-se uma camada com a função de agregação que modifica a saída da camada. Esta função substitui a saída da rede em certas regiões com uma síntese estatística das saídas próximas. É comum inserir camadas de agregação entre camadas sucessivas de convolução, pois elas reduzem o tamanho espacial da representação do problema por reduzir a quantidade de parâmetros e computação na rede. A forma mais comum de agregação é uma filtragem de tamanho 2x2 com passo 2. Esse processo reduz em 75$\%$ o tamanho do problema. Na figura \ref{fig:pooling}, pode-se checar que a função de agregação reduz o tamanho espacial do problema, o tamanho da entrada é 300x300x64. Aplicando-se uma função de agregação com filtro tamanho 2x2, e com passo 2, o tamanho é reduzido para 150x150x64. A operação mais comum para função de agregação é o máximo valor, que copia o máximo valor da dentro do filtro de 2x2 como mostrado no exemplo da figura \ref{fig:pooling}.
+
+
+\begin{figure}[H]
+    \centering
+    \caption{Função de agregação}
+    \includegraphics[width=\textwidth]{pooling1}\\
+    Fonte: Autor\hfill
+    \label{fig:pooling}
+\end{figure} 
+
+
+A forma mais comum de arquitetura de uma RNA é combinação de algumas camadas de convolução com função de ativação ReLu, seguidas por camadas de agregação, como pode ser visto na figura \ref{fig:camada_convolucao}, e repetem esse padrão até que a imagem possa ser fundida espacialmente a um pequeno tamanho. A última camada é totalmente conectada e corresponde à saída da RNC, representado pela figura \ref{fig:RNC}.
+
+\begin{figure}[H]
+    \centering
+    \caption{Camada de convolução}
+    \includegraphics[width=\textwidth]{camada_convolucao1}\\
+    Fonte: Autor\hfill
+    \label{fig:camada_convolucao}
+\end{figure} 
+
+\begin{figure}[H]
+    \centering
+    \caption{Rede Neural Convolucional}
+    \includegraphics[width=\textwidth]{RNC1}\\
+    Fonte: Autor\hfill
+    \label{fig:RNC}
+\end{figure} 
+
+
+
+
+Uma RNC pode ser usada para gerar na sua saída um objeto estruturado de grande dimensão ao invés de apenas de fazer a predição de uma classe para tarefas de classificação, ou mesmo um valor real para uma atividade de regressão. Normalmente, a saída é um tensor \textbf{S}, onde \textbf{$S_{i,j,k}$} é a probabilidade que cada pixel (\textit{j,k}) de uma entrada pertencer a uma classe \textit{i}. Isso permite que o modelo classifique cada pixel em uma imagem e crie uma mascara que permite acompanhar os contornos dos objetos.
+
+%%% deletar a seção 3.1.8 (toda ela). Tb está fora de contexto %%%
+
+%\subsection{Regras de aprendizado}
+
+%As regras de aprendizado, em geral são procedimentos que alteram os valores dos fatores de ponderação e erro de uma RNA, esses procedimentos também são chamados de treinamento. Existem três grandes categorias de aprendizado:
+
+%\begin{itemize}
+%    \item Aprendizado supervisionado: Neste tipo de aprendizado é fornecido uma série de exemplos para as redes com o comportamento que se espera da própria rede, como mostrado na equação \ref{eq:aprendizadosupervisionado}, onde \textbf{$p_q$} é uma entrada da rede e \textbf{$t_q$} é sua correspondente saída correta. Conforme as entradas são aplicadas na entrada da rede as saídas são comparadas com o objetivo, o aprendizado então é utilizado para ajustar os fatores de ponderação e erro com o objetivo de fazer com que as saídas fiquem o mais perto possível do objetivo.
+    
+%    \begin{equation}
+%         \textbf{\[ \left \{ p_1, t_1 \right \}, \left \{ p_2, t_2 \right \}, ..., \left \{ p_Q, t_Q \right \} \]}
+%         \label{eq:aprendizadosupervisionado}
+%    \end{equation}
+    
+%    Segundo \citeonline{Goodfellow-et-al-2016}, os principais métodos de aprendizado supervisionado são os algoritmos que estimam a distribuição das probabilidades p(t|\textbf{p}) através da estimação da máxima semelhança, regressão linear e máquinas de vetor de suporte entre outros citados.
+    
+%    \item Aprendizado por reforço: É similar ao aprendizado supervisionado, porém ao invés de utilizar uma saída correta para para cada entrada da rede, o algoritmo apenas devolve uma nota, e esta nota é a performance da rede quando submetidas a uma sequência de entradas. Atualmente este tipo de solução é pouco utilizada de acordo com \citeonline{Neural_Network_Design} .
+    
+%    \item Aprendizado não supervisionado: Os pesos e os erros são modificados de acordo apenas com as entradas da rede, não existe um valor de saída disponível, os algoritmos de aprendizado não supervisionado segundo \citeonline{Goodfellow-et-al-2016} agrupam as entradas através de exemplos similares e também através da distribuição de probabilidades da base de dados.
+    
+%\end{itemize}
+
+
+
+
+%%----------------------%%
+
+% Assuntos on Hold
+
+%%\subsubsection {Redes recorrentes}
+
+%%\subsubsection{Redes Neurais de Hamming}
+
+%%\subsubsection{Redes Neurais de Hopfield}
+
+%%-----------------------%%
+
+
+%% Fator de ponderação = weight // Fator de erro = bias
+
+\newpage
+\section {Programação em Lógica}
+ O modelamento e o raciocínio sobre dados relacionais, como explicado em \citeonline{10.1007/978-3-319-23461-8_37} pode ser feito através de uma paradigma de programação, a programação em lógica (PL). Programas lógicos são uma coletânea de afirmações verdadeiras dado um domínio. Apesar de muitas aplicações aprendizado de máquina utilizarem-se de ferramentas de PL, a necessidade de raciocínio mais eficiente para tratar incertezas levou ao desenvolvimento de um formalismo mais profundo, como a programação em lógica probabilística (PLP). A PLP vai além da lógica pura, na qual uma afirmação deve ser verdadeira ou falsa, e considera que uma afirmação pode ser incerta e determinar uma probabilidade a ela.
+
+
+\subsection{ProbLog}
+
+De acordo com \citeonline{10.1007/978-3-319-23461-8_37}, \textit{ProbLog} é o estado da arte da implementação de uma linguagem de programação em lógica probabilística. Seu objetivo comum é disponibilizar uma ferramenta poderosa para modelamento e raciocínio sobre domínios estruturados e domínios incertos que aparecem em aplicações, como no reconhecimento de atividades, no processamento de linguagem natural, etc. O desenvolvimento do \textit{ProbLog} foi focado especialmente para ser empregado em técnicas de aprendizado de máquina e sua implementação, além disso, é a única linguagem de programação que possibilita, por exemplo, múltiplas consultas durante o cálculo das probabilidades marginais, além de poder incorporar novas evidências.
+
+\citeonline{10.1007/978-3-319-23461-8_37} explica que \textit{ProbLog} é uma ferramenta que consiste na linguagem de programação \textit{ProbLog} e também na inferência e aprendizagem em \textit{ProbLog}. Inicialmente a \textit{ProbLog} foi proposta como uma ferramenta de PLP, cujo objetivo principal de calcular a probabilidade de sucesso de uma pesquisa. Comumente este sistema foi chamado de \textit{ProbLog1}. A evolução do \textit{ProbLog} para um linguagem capaz de representar modelos gráficos através de lógica e representações relacionais, como por exemplo, os modelos probabilísticos relacionais e programas lógicos bayesianos, é chamado de \textit{ProbLog2}. 
+
+\subsubsection{Sintaxe}
+ProbLog, como demonstrado em \citeonline{10.1007/978-3-319-23461-8_37}, é uma linguagem de programação em lógica probabilística (PLP) de propósito geral. Os fatos probabilísticos podem ser simples ou compostos por mais de uma variável. Os fatos probabilísticos são as estruturas mais básicas para representar a incerteza dos dados.
+
+A representação de um fato probabilístico tem a forma $p_{i}$ :: $f_{i}$ e afirma que que o fato $f_{i}$ é verdade com probabilidade $p_{i}$ ou falso com probabilidade $(1-p_{i})$. As regras em \textit{ProbLog} definem consequências lógicas de fatos probabilísticos. 
+
+No exemplo da figura \ref{fig:graph_acyclic}, um grafo modela a incerteza entre duas entidades, representadas por nós, e cada dependência é uma ligação com sua respectiva probabilidade.
+
+
+\begin{figure}[H]
+    \centering
+    \caption{Grafo acíclico de 3 nós}
+    \includegraphics[scale=1.3]{graph_acyclic1}\\
+    Fonte: Autor\hfill
+    \label{fig:graph_acyclic}
+\end{figure} 
+
+Em ProbLog, expressa-se o grafo da figura \ref{fig:graph_acyclic} da seguinte maneira:
+
+$0.6::e(a, b).  $ $0.3::e(a, c).  $ $0.8::e(b, c).$ \newline
+
+$p(X, Y) :- e(X, Y). $ \newline
+
+$p(X, Y) :- e(X, X1), p(X1, Y). $ \newline
+
+O fato $0.6::e(a, b)$ expressa uma ligação existente ente os nós $a$ e $b$, com probabilidade de $0.6$. Todos os possíveis nós de um grafo são representados dessa maneira Nós que não existirem podem ser omitidos ou serem declarados com probabilidade zero. Por exemplo: um nó de $b$ para $a$ seria expresso da seguinte modo: $0.0::e(b, a)$.
+
+Um átomo que se unifica com fato probabilístico é chamado de \textit{átomo probabilístico} e um átomo que se unifica com a cabeça de uma regra, de \textit{átomo derivado}. Um conjunto de átomos derivados e de átomos probabilísticos de um programa em ProbLog é uma disjunção. Tomando a figura \ref{fig:graph_acyclic} como exemplo tem-se:
+
+\{$e(a, b), e(a, c), e(b, c)$\}.\newline
+
+\{$p(a, b), p(a, c), p(b, c), P(a, c)$\}.\newline
+
+A linguagem utilizada pelo sistema \textit{ProbLog2}, também suporta fatos probabilísticos intencionais, que são empregados para compactar um conjunto de fatos probabilísticos, aplica-se a seguinte forma: $P :: f(X_1,...,X_n):- Corpo.$, onde o corpo é a conjunção de literais e não incluem outros fatos probabilísticos. A probabilidade $P$ pode ser um número ou ainda uma variável que unifica com um número quando o corpo é provado. As variáveis $X_1$ até $X_n$ são instanciadas quando o corpo é provado.
+
+No seguinte fato probabilístico intencional:
+
+$0.3::(A, B) :- membro(A, [a, b]), membro(B, [c,d])$
+
+Estão compactados a representação dos seguintes fatos:
+
+$0.3::nó(a, c)$
+
+$0.3::nó(a, d)$
+
+$0.3::nó(b, c)$
+
+$0.3::nó(a, d)$
+
+
+\subsubsection{Semântica}
+
+Todo fato probabilístico de um programa de \textit{ProbLog} é uma variável randômica binária, que pode ser verdadeira ou falsa. Além disso, a escolha do valor verdade de uma átomo probabilístico é chamada de escolha atômica. A escolha atômica de todas as probabilidades é a escolha total. Para $n$ fatos probabilísticos, existem duas escolhas totais, e cada escolha forma um único modelo de programa em \textit{ProbLog}, chamado de possíveis mundos. Dado que átomos probabilísticos são considerados variáveis independentes e randômicas, é possível determinar a probabilidade de um possível mundo como o produto das probabilidades associadas com as escolhas atômicas. 
+
+Sendo $Ω = {ω_1, .., ω_N }$ um conjunto de possíveis mundos em um programa escrito em ProbLog, onde $N=2^n$, sendo que $n$ é o número de átomos probabilísticos. Uma vez que apenas átomos probabilísticos tenham probabilidades, um  único possível mundo pode ser mostrado como uma tupla $(w_i^+, w_i^-)$, onde $w_i^+$ é o conjunto de átomos probabilísticos em $w_i$ que são verdadeiros e $w_i^-$ são falsos.
+
+Formalmente, um programa em \textit{ProbLog} define a distribuição sobre todos os mundos possíveis como mostrado na equação \ref{eq:distribuição_possiveis_mundos}, onde $p_i$ são as probabilidades dos átomos $a_i$.
+
+\begin{equation}
+\centering
+    P(w_i)= \prod_{a_j\in w_i^+} p_j \prod_{a_j\in w_i^-} (1-p_j)
+    \label{eq:distribuição_possiveis_mundos}
+\end{equation}
+
+
+A função de integração sobre as probabilidades de todos os mundos possíveis em um programa \textit{ProbLog} é igual a um, conforme a equação \ref{eq:distribuição_possiveis_mundos}: 
+
+\begin{equation}
+\centering
+    \sum_{w_i \in \Omega } {P(w_i)=1}
+    \label{eq:distribuição_possiveis_mundos}
+\end{equation}
+
+Uma pesquisa de um átomo $q$ é verdadeira em todos os mundos possíveis $w^q$ se o modelo expresso pelo mundo implicar em $q$ ($w^q \models q$).
+
+A pesquisa $p(a, c)$ realizada para o grafo da figura \ref{fig:graph_acyclic} é verdadeira se se existir, pelo menos, um caminho entre os nós $a$ e $c$. Esta pesquisa é verdadeira em 5 dos possíveis $2^3=8$ mundos possíveis, como pode ser visto tabela \ref{tab: possiveis mundos} abaixo:
+
+            \begin{table}[H]
+                \centering % used for centering table
+                \caption{Mundos possíveis entre $a$ e $c$}
+                \begin{tabular}{c c c c c } % centered columns (2 columns)
+                \hline\hline %inserts double horizontal lines
+                 Mundos possíveis & $nó(a,b)$ & $nó(a,c)$ & $nó(b,c)$ & Probabilidades\\  % inserts table
+                %heading
+                \hline  % inserts single horizontal line
+                $w_1$ & T 0.6 & T 0.3 & T 0.8 & \textbf{0.144}\\
+                $w_2$ & T 0.6 & T 0.3 & F 0.2 & \textbf{0.036}\\
+                $w_3$ & T 0.6 & F 0.7 & T 0.8 & \textbf{0.336} \\
+                $w_4$ & T 0.6 & F 0.7 & F 0.2 & 0.084 \\
+                $w_5$ & F 0.4 & T 0.3 & T 0.8 & \textbf{0.096} \\ 
+                $w_6$ & F 0.4 & T 0.3 & F 0.2 & \textbf{0.024} \\
+                $w_7$ & F 0.4 & F 0.7 & T 0.8 & 0.224 \\
+                $w_8$ & F 0.4 & F 0.7 & F 0.2 & 0.056\\
+                      &       &       & \sum =& 1.000  \\        [0.5ex] 
+                
+                \end{tabular}
+                \label{tab: possiveis mundos}
+            \end{table}
+            
+
+
+
+\subsubsection{Inferência e aprendizado}
+
+A linguagem \textit{ProbLog} realiza os seguintes tipos de inferência:
+
+\begin{itemize}
+    \item probabilidade marginal: sendo $L$ um programa em \textit{ProbLog} e um conjunto de átomos probabilísticos $At$ e uma pergunta $Q \subseteq At$ é soma de todas as probabilidades, onde a pergunta $q \in Q$ é verdade para um programa em \textit{ProbLog} $L: P(q)$. No exemplo da tabela \ref{tab: possiveis mundos}, é a soma das probabilidades que estão em negrito, $p(a, c)=0,636$.
+    
+    \item probabilidade condicional: é o calculo da probabilidade, dadas as evidências observadas. Evidências são um conjunto de tuplas de átomos e seus respectivos valores verdades observados. Formalmente uma evidência é $E=e$, onde $E \subset At$ é o conjunto de átomos e $e$ é o conjunto de valores verdade observados. A probabilidade condicional de uma pesquisa $q \in Q$ é o cálculo da relação \(P(q|E=e)=\frac{P(q\wedge E=e)}{P(E=e)}\). No exemplo do grafo acíclico da tabela \ref{tab: possiveis mundos} para a pesquisa $p(a,c)$ dado como evidência que o $nó(a,c)=falso$, temos: $P(p(a, c)|e(a, c) = false) =0.48$ 
+    
+    \item máximo a posteriori: além do máximo a posteriori, calcula também seu caso especial: explicação mais provável. Dado um programa $L$ em \textit{ProbLog} e um conjunto de átomos $At$, uma pesquisa $Q$ e evidências $E=e$ em que $\{Q \cup E\}\subset At$, o cálculo de máximo a posteriori é encontrar os átomos probabilísticos mais prováveis para cada átomo probabilístico da pesquisa, em que as evidências estão no estado determinado na pesquisa. No cálculo da explicação mais provável, o valor máximo de $argmax_\textbf{p}P(Q=q|E=e)$ onde $\textbf{q}$ é um conjunto dos valores verdade para cada $q\in Q$. No exemplo do grafo acíclico da tabela \ref{tab: possiveis mundos}, dada a evidência $nó(a,b)= falso$ o estado que demostra a explicação mais provável é $w7$ com $P=0,224$, pois tem a maior probabilidade dentre todas os possíveis mundo dado que $nó(a,b)= falso$.
+    
+\end{itemize} 
+
+Programas em \textit{Problog} podem aprender parâmetros dado parciais interpretações do próprio programa. Uma interpretação parcial é um conjunto de átomos com seus respectivos valores observados. Para um dado programa em \textit{Problog}, que contenha um conjunto de fatos probabilísticos com valores das probabilidades desconhecidos, a tarefa de aprendizado através de interpretações calcula as probabilidades através do método de explicação mais provável dos fatos probabilísticos, dadas as evidência de alguns átomos. Este tipo de aprendizagem também utiliza inferência condicional para atualizar as probabilidades dos fatos probabilísticos iniciais até sua convergência.
+
+Neste capítulo foram apresentadas as teorias de redes neurais e lógica probabilística que serão necessárias para a base teórica da proposta deste trabalho. No próximo capítulo é apresentada a proposta deste trabalho, e mostrará como serão aplicadas as redes neurais e a lógica probabilística como ferramentas para a criação de um sistema de auxílio ao motorista, com o objetivo de classificar automaticamente o risco de colisão entre automóveis.
+
+
+%\subsubsection{Funções do programa}
+
+
+%%%%%
+
+
+%---parei!!!%
+
+% --- Seção dentro do capítulo
+
+
+
+\chapter {Proposta}
+
+\section {Objetivo}
+O objetivo deste trabalho é desenvolver um sistema de assistência ao motorista, capaz de classificar automaticamente o risco de colisão durante ultrapassagens em tráfego de veículos, de acordo com o Código Brasileiro de Trânsito e utilizando-se de RNCs para analisar uma sequência de quadros captados por uma câmera acoplada a um veículo. A RNC deverá segmentar e classificar veículos, sinalizações de solo e placas de sinalização dentro de um contexto de tráfego de veículos com a finalidade de gerar na sua saída um vetor com esses dados. O vetor será utilizado como evidência para um sistema de inferência lógico probabilístico, escrito na linguagem probabilística \textit{ProbLog}. Esse sistema de inferência lógico probabilístico também receberá informações de uma base de conhecimento que conterá regras de ultrapassagens previstas no Código Brasileiro de Trânsito. O sistema realizará inferências do risco de colisão nesse contexto específico, com o objetivo de gerar um alerta quando o risco inferido for relevante.
+\section {Justificativa}
+Os sistemas avançados de assistência ao motorista (ADAS) vêm crescendo nos últimos anos por duas razões. A primeira é regulatória; nos Estados Unidos e nos países da União Europeia, já será obrigatório que em 2020 existam sistemas de freio de emergência e sistemas de alerta de colisão. A segunda é mercadológica; os motoristas estão cada vez mais interessados em carros com esses sistemas de assistência. Atualmente, a Euro NCAP, entidade criado pelo Reino Unido e financiada pela União Europeia, realiza testes destrutivos em automóveis com o objetivo de avaliar a segurança dos ocupantes. Emprega um protocolo bem rígido de testes e somente dá nota máxima para veículos que já possuem sistemas de freio automático que previnam colisão ou que as amenize em caso extremos. A Euro NCAP identificou em suas pesquisas que motoristas, por desatenção ou erro, têm o tempo de reação de frear atrasadas em relação ao tempo necessário para evitar a colisão. Para atender a essa demanda, este trabalho pretende desenvolver um sistemas de assistência ao motorista que se utiliza de RNCs em conjunto com um sistema lógico probabilístico para classificação de situações de risco em contextos de tráfego de veículos.
+\section {Método}
+
+O sistema proposto no trabalho é esquematizado na figura \ref{fig:diagrama_de_blocos}.
+
+\begin{figure}[H]
+    \centering
+    \caption{Diagrama de blocos do sistema proposto}
+    \includegraphics[width=\textwidth]{diagrama_de_blocos_v6}\\
+    Fonte: Autor\hfill
+    \label{fig:diagrama_de_blocos}
+\end{figure} 
+
+Indica-se abaixo o funcionamento de cada etapa enumerada na figura \ref{fig:diagrama_de_blocos}, onde os números de cada item referem-se aos números dos módulos da figura \ref{fig:diagrama_de_blocos}.
+
+\begin{enumerate}
+    
+
+    \item[{(1)}] Uma sequência de quadros de uma situação de tráfego de veículos será usada como entrada para análise pelo sistema.
+
+
+    \item[{(2)}] Uma RNC receberá na sua entrada a sequência de quadros do item (1), o segmentará e classificará informações de sinalização de solo, placas de sinalização e veículos, como mostrado na figura \ref{fig:diagrama_de_blocos}.
+
+
+    \item[{(3)}] A saída da RNC conterá as informações segmentadas e classificadas com as probabilidades de os objetos detectados estarem na cena. No exemplo da figura \ref{fig:diagrama_de_blocos}, temos:
+        \begin{itemize}
+            \item Automóvel.
+            \item Sinalização de solo de conversão a direita . 
+        \end{itemize}
+        
+    \item[{(4)}] A saída classificada em (3) será utilizada como evidência sobre o contexto da cena contida na sequência de quadros utilizados em (1) como entrada para a RNC. No exemplo da figura \ref{fig:diagrama_de_blocos} tem-se:
+        \begin{itemize}
+            \item Automóvel = \textit{verdadeiro} (\textit{v}).
+            \item Sinalização de solo de conversão a direita  = \textit{v}.
+        \end{itemize}    
+        
+
+    \item[{(5)}] A base de conhecimento conterá regras de ultrapassagem, tendo como base o Código Brasileiro de Trânsito e os fatos com suas probabilidades definidas a  \textit{a priori}. através de testes empíricos. No exemplo da figura \ref{fig:diagrama_de_blocos}, temos em \textit{ProbLog} um exemplo de sentenças do programa que modela o risco da cena:
+        \begin{itemize}
+        
+            \item Fatos probabilísticos definidos a \textit{priori}:\newline
+            
+            - Sinalização de solo de conversão a direita.\newline
+            0.50::sinalizacaoSoloD(s).\newline
+
+            - Placa de sinalização de sentido duplo.\newline
+            0.50::sinalizacaoPlacaSentidoDuplo(spsd).\newline
+            
+            - Placa de sinalização de sentido único.\newline
+            0.50::sinalizacaoPlacaSentidoUnico(spsu).\newline
+
+            \item Regras probabilísticas definidas a \textit{a priori}.\newline
+
+
+            - Existe probabilidade de colisão dado um automóvel e sinalização de solo de conversão a direita.\newline
+            0.25::colisao :- carro(X), sinalizacaoSoloD(Y).\newline
+            
+            - Existe probabilidade de conversão de automóvel dado um automóvel e sinalização de solo de conversão a direita.\newline
+            0.85::conversao :- carro(X), sinalizacaoSoloD(Y).\newline
+            
+            - Existe probabilidade de colisão dada a conversão de automóvel.\newline
+            0.75::colisao :- conversao.\newline
+
+           \item O artigo 32 do Código Brasileiro de Trânsito diz que: "O condutor não poderá ultrapassar veículos em vias com duplo sentido de direção e pista única, nos trechos em curvas e em aclives sem visibilidade suficiente, nas passagens de nível, nas pontes e viadutos e nas travessias de pedestres, exceto quando houver sinalização permitindo a ultrapassagem.". De acordo com o artigo citado, propuseram-se três regras, que incluem o sentido da via e a existência de pista única. Para o exemplo da figura  \ref{fig:diagrama_de_blocos}, as outras regras do artigo 32 do Código Brasileiro de Trânsito não foram codificadas em regras probabilísticas. Existe probabilidade de uma ultrapassagem de risco acontecer e também de ser proibida pelo Código Brasileiro de Trânsito, tendo-se em vista a existência de um automóvel, a sinalização de solo de conversão à direita e as placas de sentido da via. Portanto, as seguintes regras probabilísticas foram modeladas:\newline
+           
+            - Existe probabilidade de acontecer uma ultrapassagem de risco se existir um carro, se houver placa indicando via de mão dupla. \newline               
+            0.90::risco\_ultrapassagem :-\newline
+            carro(X),sinalizacaoSoloD(Y),sinalizacaoPlacaSentidoDuplo(Z).\newline
+        
+            - Existe probabilidade de acontecer uma ultrapassagem de risco se existir um carro, se não houver placa indicando via de mão dupla nem placa indicando via de mão simples.\newline
+            0.99::risco\_ultrapassagem:-\newline
+            carro(X),sinalizacaoSoloD(Y),\textbackslash+sinalizacaoPlacaSentidoDuplo(Z),\newline\textbackslash +sinalizacaoPlacaSentidoUnico(Z).\newline
+
+            - Existe probabilidade de acontecer uma ultrapassagem de risco se existir um carro, se não houver placa indicando via de mão dupla e houver placa indicando via de mão simples.\newline
+            0.10::risco\_ultrapassagem :-\newline
+            carro(X),sinalizacaoSoloD(Y),sinalizacaoPlacaSentidoUnico(Z),\newline
+            \textbackslash+sinalizacaoPlacaSentidoDuplo(Z).
+            
+           
+     \end{itemize}
+     
+    As regras acima, válidas para o exemplo da figura \ref{fig:diagrama_de_blocos}, foram verificadas em experimentos preliminares e podem ser executadas em: \url{https://dtai.cs.kuleuven.be/problog/editor.html#task=prob&hash=ef8789119a18fb680cab3aac818ce041}
+
+    \item[{(6)}] Utilizando-se das evidências disponíveis (4), em conjunto com a base de conhecimento (5) é possível calcular o risco da situação do exemplo através de inferência probabilística, bem como de obter a probabilidade de colisão entre os carros na situação proposta no exemplo da figura \ref{fig:diagrama_de_blocos}. 
+
+    \item[{(7)}] A saída final do sistema mostrará as situações de riscos inferidas (6) no contexto, apresentando a probabilidade do risco.  
+
+
+\end{enumerate}
+
+A seguir estão descritas as principais atividades que serão realizadas para implementação da proposta como mostrada no diagrama de blocos da figura \ref{fig:diagrama_de_blocos}. 
+
+
+\begin{itemize}
+   
+
+ \item Atividade 1: Será implementada a RNC desenvolvida por \citeonline{DBLP:journals/corr/SzegedyLJSRAEVR14} chamada de \textit{Inception} e pré treinada com a base de dados da competição ILSVRC. Esta RNC está disponível no GitHub em \url{https://github.com/google/inception}. Apesar de existirem novas versões da \textit{Inception}, a primeira versão é a computacionalmente mais leve, por isso foi a escolhida. \textit{Inception} está implementada utilizando-se a estrutura $TensorFlow^{TM}$ em Python. $TensorFlow^{TM}$ é uma estrutura de código aberto para Aprendizado de Máquina. Suas bibliotecas fornecem implementação para computação numérica com alta performance, possibilitando utilização de placas de processamento gráfico e também aceleradores gráficos na nuvem. 
+ 
+
+ \item Atividade 2: Adicionalmente ao pré-treino na base da ILSVRC, a RNC será treinada com bases relacionadas a automóveis e tráfego de veículos.\newline
+ A base \textit{cityscape}, proposta por \citeonline{DBLP:journals/corr/CordtsORREBFRS16}, é uma base de dados de sequências de vídeos capturados em 50 diferentes cidades, conta com 5.000 imagens com anotações de alta qualidade à nível de pixel, bem como outras 20.000 imagens com anotações menos detalhadas e focada para trabalhos de direção autônoma em ambientes urbanos, contém ainda uma alta gama de cenas complexas em vias urbanas. Os vídeos capturados para \textit{cityscape} utilizaram-se de câmeras stereo e portanto possuem também a informação de distância.\newline
+ As Bases Kitti desenvolvidas por, \citeonline{Fritsch2013ITSC} e \citeonline{Geiger2012CVPR}, possuem anotações de mais de 80.000 imagens tanto para objetos relacionados ao transito quanto específicos para estradas.\newline
+ A base de dados da CVRR \citeonline{CVRR_vehicle_detection} e \citeonline{CVRR_sign_detection} contém anotações sobre placas e sinalização de trânsito. São mais de 7.000 anotações em mais de 6.000 imagens.
+ 
+ \item Atividade 3: criação e determinação de uma base de conhecimento de regras contidas do artigo 26 até artigo 35 do Código Brasileiro de Trânsito, contendo regras de ultrapassagem por automóveis de passeio. Esse comportamento é crítico por, na maioria das vezes, requerer uma ação imediata do condutor para evitar uma situação de perigo como, por exemplo, a troca de faixa ou a redução de velocidade do veículo. Essa base de conhecimentos que conterá os comportamentos citados acima, será escrita em linguagem de programação lógica \textit{ProbLog}. Todas as probabilidades associadas as regras probabilísticas, e contidas na base de conhecimento, serão definidas empiricamente pelo autor do trabalho.  
+ 
+ \item Atividade 4: Realizar testes e ajustes no modelo.
+
+ \item Atividade 5: Realizar a avaliação da proposta através de vídeos da própria base, além da captura de vídeos com situações específicas e controladas para fazer a avaliação através da técnica \textit{leave-one-out} e tabela de confusão. Com os dados serão levantadas curvas de revocação x precisão
+
+ \item Atividade 6: Redação da dissertação.
+ 
+  \item Atividade 7: Redação e submissão de artigo científico.
+
+ \item Atividade 8: Defesa.
+
+\end{itemize}
+
+O desenvolvimento das atividades propostas acima, seguirão de acordo com o cronograma da figura \ref{fig:cronograma}:
+
+
+
+\begin{figure}[H]
+    \centering
+    \caption{Cronograma de Trabalho}
+    \includegraphics[width=\textwidth]{cronograma_qualificacao1}\\
+    Fonte: Autor\hfill
+    \label{fig:cronograma}
+\end{figure} 
+
+%---
+% Resultados
+%---
+
+\chapter {Resulados}
+
+%intro do capítulo
+
+%Desenvolvimento do resultado
+
+%%Separar por três cenas
+
+
+
+%---
+% Conclusão
+% ---
+\chapter*[Conclusão]{Conclusão}
+\addcontentsline{toc}{chapter}{Conclusão}
+
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{abntex2-modelo-references} %% REFERENCIA AO ARQUIVO abntex2-modelo-references.bib
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+%\begin{apendicesenv}
+
+% Imprime uma página indicando o início dos apêndices
+%\partapendices
+
+% ----------------------------------------------------------
+%\chapter{}
+% ----------------------------------------------------------
+
+
+
+%\end{apendicesenv}
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+%\begin{anexosenv}
+
+% Imprime uma página indicando o início dos anexos
+%\partanexos
+
+% ---
+%\chapter{.}
+% ---
+
+
+% ---
+
+% ---
+
+
+
+% ---
+
+
+%\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+
+\printindex
+
+%---------------------------------------------------------------------
+% Formulário de Identificação (opcional)
+%---------------------------------------------------------------------
+%\chapter*[Formulário de Identificação]{Formulário de Identificação}
+%\addcontentsline{toc}{chapter}{Exemplo de Formulário de Identificação}
+%\label{formulado-identificacao}
+
+
+
+\end{document}
